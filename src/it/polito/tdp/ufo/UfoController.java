@@ -6,12 +6,16 @@ package it.polito.tdp.ufo;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import it.polito.tdp.ufo.model.Avvistamenti;
+import it.polito.tdp.ufo.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 
 public class UfoController {
+	private Model model;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -20,7 +24,7 @@ public class UfoController {
     private URL location;
 
     @FXML // fx:id="boxAnno"
-    private ComboBox<?> boxAnno; // Value injected by FXMLLoader
+    private ComboBox<Avvistamenti> boxAnno; // Value injected by FXMLLoader
 
     @FXML // fx:id="boxStato"
     private ComboBox<?> boxStato; // Value injected by FXMLLoader
@@ -49,5 +53,11 @@ public class UfoController {
         assert boxStato != null : "fx:id=\"boxStato\" was not injected: check your FXML file 'Ufo.fxml'.";
         assert txtResult != null : "fx:id=\"txtResult\" was not injected: check your FXML file 'Ufo.fxml'.";
 
+    }
+    
+    public void setModel(Model model) {
+    	this.model = model;
+    	
+    	boxAnno.getItems().addAll(this.model.tendina());
     }
 }
